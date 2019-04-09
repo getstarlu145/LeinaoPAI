@@ -1,8 +1,6 @@
-FROM nvidia/cuda:8.0-devel-ubuntu16.04
+FROM nvidia/cuda:9.0-cudnn7-devel-ubuntu16.04
 
 MAINTAINER Chenglong Wu <wuchenglong15@gmail.com>
-
-ENV CUDNN_VERSION 7.0.5.15
 
 # Install some dependencies
 RUN apt-get update && apt-get install -y \
@@ -67,9 +65,7 @@ RUN apt-get update && apt-get install -y \
 	tmux \
 	default-jdk \
 	doxygen \
-        libcudnn7=$CUDNN_VERSION-1+cuda8.0 \
-        libcudnn7-dev=$CUDNN_VERSION-1+cuda8.0 && \
-    apt-mark hold libcudnn7 && \
+	&& \
     apt-get clean && \
     apt-get autoremove && \
     rm -rf /var/lib/apt/lists/* && \
@@ -94,12 +90,12 @@ RUN curl -o /tmp/anaconda.sh https://mirrors.tuna.tsinghua.edu.cn/anaconda/archi
 	visdom \
 	shapely \
 	msgpack \
-	h5py \
+	h5py==2.8.0 \
 	pypng \ 
 	sklearn \
 	easydict \
 	image \
-        opencv-python==3.4.5.20 \
+    opencv-python==3.4.5.20 \
 	&& \
     # Install opencv-python 3.4		
     conda clean --all && \
