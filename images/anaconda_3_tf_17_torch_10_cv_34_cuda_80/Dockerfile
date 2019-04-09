@@ -77,6 +77,7 @@ RUN curl -o /tmp/anaconda.sh https://mirrors.tuna.tsinghua.edu.cn/anaconda/archi
     bash /tmp/anaconda.sh -b -p ~/anaconda3 && \ 
     rm /tmp/anaconda.sh && \
     echo 'export PATH="/root/anaconda3/bin:$PATH"' >> ~/.bashrc && \
+    echo 'export LD_LIBRARY_PATH="/usr/local/cuda/lib64:/usr/local/cuda/extras/CUPTI/lib64:/usr/local/nvidia/lib64"' >> ~/.bashrc && \
     . ~/.bashrc  && \
     conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free && \
     conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main && \

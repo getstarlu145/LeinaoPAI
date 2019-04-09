@@ -1,7 +1,7 @@
-## anaconda_3_tf_12_torch_10_cv_34_cuda_90
+## anaconda_3_tf_17_torch_10_cv_34_cuda_90
 
 ### Features:
-- [x] From nvidia/cuda:8.0-devel-ubuntu16.04
+- [x] From nvidia/cuda:9.0-cudnn7-devel-ubuntu16.04
 - [x] Installed Anaconda 3
 - [x] Installed tensorflow-gpu=1.7.0, tensorboard
 - [x] Installed torch, torchvision, visdom
