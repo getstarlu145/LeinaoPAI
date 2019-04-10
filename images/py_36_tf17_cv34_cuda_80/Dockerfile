@@ -76,9 +76,9 @@ RUN curl -o /tmp/anaconda.sh https://mirrors.tuna.tsinghua.edu.cn/anaconda/archi
     chmod +x /tmp/anaconda.sh && \
     bash /tmp/anaconda.sh -b -p ~/anaconda3 && \ 
     rm /tmp/anaconda.sh && \
-    echo 'export PATH="/root/anaconda3/bin:$PATH"' >> /etc/profile && \
-    echo 'export LD_LIBRARY_PATH="/usr/local/cuda/lib64:/usr/local/cuda/extras/CUPTI/lib64:/usr/local/nvidia/lib64"' >> /etc/profile && \
-    . /etc/profile  && \
+    echo 'export PATH="/root/anaconda3/bin:$PATH"' >> ~/.bashrc && \
+    echo 'export LD_LIBRARY_PATH="/usr/local/cuda/lib64:/usr/local/cuda/extras/CUPTI/lib64:/usr/local/nvidia/lib64"' >> ~/.bashrc && \
+    . ~/.bashrc  && \
     conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free && \
     conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main && \
     conda config --set show_channel_urls yes && \
@@ -93,6 +93,9 @@ RUN curl -o /tmp/anaconda.sh https://mirrors.tuna.tsinghua.edu.cn/anaconda/archi
 	image \
         opencv-python==3.4.5.20 \
 	&& \
-    conda install -y tensorflow-gpu==1.7.0 cudatoolkit==8.0 cudnn==7.0.5	
+    echo 'export PATH="/root/anaconda3/bin:$PATH"' >> /etc/profile && \
+    echo 'export LD_LIBRARY_PATH="/usr/local/cuda/lib64:/usr/local/cuda/extras/CUPTI/lib64:/usr/local/nvidia/lib64"' >> /etc/profile && \
+    . /etc/profile && \
+    conda install -y tensorflow-gpu==1.7.0 cudatoolkit==8.0 cudnn==7.0.5 && \	
     conda clean --all && \
     rm -r ~/.cache/pip/* 
