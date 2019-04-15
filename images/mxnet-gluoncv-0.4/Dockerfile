@@ -1,4 +1,4 @@
-FROM nvidia/cuda:9.2-cudnn7-devel-ubuntu16.04
+FROM nvidia/cuda:9.0-cudnn7-devel-ubuntu16.04
 
 MAINTAINER lnc@mail.ustc.edu.cn
 
@@ -75,7 +75,7 @@ RUN APT_INSTALL="apt-get install -y --no-install-recommends" && \
         && \
 
     $PIP_INSTALL \
-        mxnet-cu92mkl==1.4.0 \
+        mxnet-cu90mkl==1.4.0 \
         graphviz \
         gluoncv==0.4.0 \
         && \
