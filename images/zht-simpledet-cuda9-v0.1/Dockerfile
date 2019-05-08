@@ -132,6 +132,6 @@ RUN cd /tmp/mxnet && \
 # clean-up
 RUN ldconfig && \
     apt-get clean && \
-    apt-get autoremove && \
+    apt-get autoremove
     #rm -rf mxnet
     #rm -rf /var/lib/apt/lists/* /tmp/* ~/*
