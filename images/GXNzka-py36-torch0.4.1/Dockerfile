@@ -10,5 +10,4 @@ RUN pip install torch==0.4.1 \
             tqdm \
             colorlog \
             boto3 \
-            pytorch-pretrained-bert==v0.6.0 \
             nibabel
