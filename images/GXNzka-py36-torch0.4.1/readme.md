@@ -79,7 +79,6 @@ pyparsing==2.2.0
 python-apt==1.1.0b1+ubuntu0.16.4.1
 python-dateutil==2.7.3
 python-gflags==3.1.2
-pytorch-pretrained-bert==0.6.0
 pytz==2018.4
 PyWavelets==0.5.2
 PyYAML==4.1
