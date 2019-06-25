@@ -2,6 +2,20 @@
 FROM nvidia/cuda:10.0-cudnn7-devel-ubuntu16.04
 
 MAINTAINER marearth@mail.ustc.edu.cn
+RUN mkdir -p  ~/downloads && \
+    cd ~/downloads && \
+    apt-get install gnupg-curl && \
+    wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64/cuda-repo-ubuntu1604_10.0.130-1_amd64.deb && \
+    dpkg -i --force-confdef cuda-repo-ubuntu1604_10.0.130-1_amd64.deb   &&\
+    apt-key adv --fetch-keys https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64/7fa2af80.pub &&\
+    apt-get update &&\
+    wget http://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1604/x86_64/nvidia-machine-learning-repo-ubuntu1604_1.0.0-1_amd64.deb &&\
+    apt install -y ./nvidia-machine-learning-repo-ubuntu1604_1.0.0-1_amd64.deb &&\
+    apt-get update &&\
+    rm -rf  ~/downloads
+
+RUN mkdir /usr/lib/nvidia   &&  \
+    apt-get install -y  --no-install-recommends nvidia-410
 
 RUN apt-get clean    && \
     cd /var/lib/apt   &&   mkdir -p lists/partial      &&\
@@ -29,7 +43,7 @@ ENV LD_LIBRARY_PATH /usr/lib/x86_64-linux-gnu:/usr/local/cuda-10.0/lib64:$LD_LIB
 
 RUN pip install --no-cache-dir wheel  setuptools
 RUN pip install --no-cache-dir pillow  scikit-learn  Cython    easydict   hickle  pyyaml matplotlib   scikit-image    \
-	lxml  tensorflow_gpu==1.13.1   h5py   pydot_ng   keras==2.2.4  opencv-python    tqdm  threadpool  torch==1.1.0  torchvision tensorboardX
+	lxml  tf-nightly-gpu   h5py   pydot_ng   keras==2.2.4  opencv-python    tqdm  threadpool  torch==1.1.0  torchvision tensorboardX
 
 
 EXPOSE 6006

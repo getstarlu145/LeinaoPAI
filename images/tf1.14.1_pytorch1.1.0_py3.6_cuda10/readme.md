@@ -4,7 +4,7 @@
 
 ## Packages
 
-* tensorflow 1.13.1
+* tensorflow 1.14.1(version:tf-nightly-gpu.dev20190624)
 
 * keras 2.2.4
 
