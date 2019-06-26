@@ -30,9 +30,9 @@ RUN mkdir -p  ~/downloads && \
     apt-get update &&\
     rm -rf  ~/downloads
 
-RUN mkdir /usr/lib/nvidia   &&  \
+RUN mkdir -p /usr/lib/nvidia   &&  \
     apt-get install -y  --no-install-recommends nvidia-410
-    
+
 RUN curl -o ~/conda.sh -O  https://repo.continuum.io/archive/Anaconda3-5.1.0-Linux-x86_64.sh  && \
     chmod +x ~/conda.sh && \
     ~/conda.sh -b -p /opt/conda3 && \
