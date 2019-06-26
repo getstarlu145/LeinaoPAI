@@ -2,20 +2,7 @@
 FROM nvidia/cuda:10.0-cudnn7-devel-ubuntu16.04
 
 MAINTAINER marearth@mail.ustc.edu.cn
-RUN mkdir -p  ~/downloads && \
-    cd ~/downloads && \
-    apt-get install gnupg-curl && \
-    wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64/cuda-repo-ubuntu1604_10.0.130-1_amd64.deb && \
-    dpkg -i --force-confdef cuda-repo-ubuntu1604_10.0.130-1_amd64.deb   &&\
-    apt-key adv --fetch-keys https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64/7fa2af80.pub &&\
-    apt-get update &&\
-    wget http://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1604/x86_64/nvidia-machine-learning-repo-ubuntu1604_1.0.0-1_amd64.deb &&\
-    apt install -y ./nvidia-machine-learning-repo-ubuntu1604_1.0.0-1_amd64.deb &&\
-    apt-get update &&\
-    rm -rf  ~/downloads
 
-RUN mkdir /usr/lib/nvidia   &&  \
-    apt-get install -y  --no-install-recommends nvidia-410
 
 RUN apt-get clean    && \
     cd /var/lib/apt   &&   mkdir -p lists/partial      &&\
@@ -30,6 +17,21 @@ RUN apt-get clean    && \
     screen  unzip  graphviz   ca-certificates  python-setuptools   swig \
     libjpeg-dev libpng-dev libopencv-dev   &&\
     rm -rf /var/lib/apt/lists/*   
+
+RUN mkdir -p  ~/downloads && \
+    cd ~/downloads && \
+    apt-get install gnupg-curl && \
+    wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64/cuda-repo-ubuntu1604_10.0.130-1_amd64.deb && \
+    dpkg -i --force-confdef cuda-repo-ubuntu1604_10.0.130-1_amd64.deb   &&\
+    apt-key adv --fetch-keys https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64/7fa2af80.pub &&\
+    apt-get update &&\
+    wget http://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1604/x86_64/nvidia-machine-learning-repo-ubuntu1604_1.0.0-1_amd64.deb &&\
+    apt install -y ./nvidia-machine-learning-repo-ubuntu1604_1.0.0-1_amd64.deb &&\
+    apt-get update &&\
+    rm -rf  ~/downloads
+
+RUN mkdir -p /usr/lib/nvidia   &&  \
+    apt-get install -y  --no-install-recommends nvidia-410
 
 RUN curl -o ~/conda.sh -O  https://repo.continuum.io/archive/Anaconda3-5.1.0-Linux-x86_64.sh  && \
     chmod +x ~/conda.sh && \
